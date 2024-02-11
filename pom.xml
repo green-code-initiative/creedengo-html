@@ -52,16 +52,18 @@
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
         <version.sonarqube>9.4.0.54424</version.sonarqube>
+        <version.sonarqube.api.impl>9.9.4.87374</version.sonarqube.api.impl>
         <version.sonar-html>3.8.0.3510</version.sonar-html>
-        <version.sonar-analyzer-commons>2.5.0.1358</version.sonar-analyzer-commons>
         <version.sonar-packaging>1.23.0.740</version.sonar-packaging>
-
+        <version.sonar-analyzer-commons>2.7.0.1482</version.sonar-analyzer-commons>
+        <version.buildnumber>3.1.0</version.buildnumber>
         <version.maven-shade>3.5.0</version.maven-shade>
+        <version.license-maven-plugin>4.1</version.license-maven-plugin>
 
-        <junit.jupiter.version>5.9.2</junit.jupiter.version>
-        <assertj.version>3.24.2</assertj.version>
-        <mockito.version>5.3.1</mockito.version>
-        <jacoco.version>0.8.11</jacoco.version>
+        <version.junit>5.10.1</version.junit>
+        <version.mockito>5.3.1</version.mockito>
+        <version.assertj>3.24.2</version.assertj>
+        <version.jacoco>0.8.11</version.jacoco>
     </properties>
 
     <dependencies>
@@ -87,22 +89,35 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>${junit.jupiter.version}</version>
+            <version>${version.junit}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>${assertj.version}</version>
+            <version>${version.assertj}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
-            <version>${mockito.version}</version>
+            <version>${version.mockito}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.sonarsource.sonarqube</groupId>
+            <artifactId>sonar-plugin-api-impl</artifactId>
+            <version>${version.sonarqube.api.impl}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
@@ -121,6 +136,7 @@
                     <pluginApiMinVersion>${version.sonarqube}</pluginApiMinVersion>
                     <skipDependenciesPackaging>true</skipDependenciesPackaging>
                     <jreMinVersion>${java.version}</jreMinVersion>
+                    <requiredForLanguages>web,jsp,js,php</requiredForLanguages>
                     <archive>
                         <manifestEntries>
                             <Implementation-Build>${buildNumber}</Implementation-Build>
@@ -131,7 +147,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>buildnumber-maven-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>${version.buildnumber}</version>
                 <executions>
                     <execution>
                         <phase>validate</phase>
@@ -199,7 +215,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacoco.version}</version>
+                <version>${version.jacoco}</version>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -219,7 +235,7 @@
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
-                <version>4.1</version>
+                <version>${version.license-maven-plugin}</version>
                 <configuration>
                     <properties>
                         <owner>Green Code Initiative</owner>
@@ -236,7 +252,6 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>validate</id>
                         <goals>
                             <goal>check</goal>
                         </goals>
