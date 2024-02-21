@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
-rm -rf ./lib/*.jar
+cd ..
 mvn clean package -DskipTests
