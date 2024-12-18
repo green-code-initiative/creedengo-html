@@ -1,6 +1,6 @@
 /*
- * ecoCode HTML plugin - Provides rules to reduce the environmental footprint of your HTML programs
- * Copyright © 2023 Green Code Initiative (https://www.ecocode.io)
+ * creedengo HTML plugin - Provides rules to reduce the environmental footprint of your HTML programs
+ * Copyright © 2024 Green Code Initiative (https://green-code-initiative.org)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,9 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package io.ecocode.html;
+package org.greencodeinitiative.html;
 
-import io.ecocode.html.checks.AvoidAutoplayCheck;
+import org.greencodeinitiative.html.checks.AvoidAutoplayCheck;
 import org.sonar.plugins.html.checks.AbstractPageCheck;
 
 import java.util.Arrays;
